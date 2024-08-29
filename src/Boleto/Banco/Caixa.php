@@ -221,4 +221,14 @@ class Caixa extends AbstractBoleto implements BoletoContract
         return $this;    
     }
 
+    /**
+     * Retorna o Nosso Número.
+     *
+     * @return string
+     */
+    public function getNossoNumero()
+    {
+        return $this->numero;
+    }
+
 }
