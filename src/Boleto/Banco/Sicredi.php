@@ -300,4 +300,14 @@ class Sicredi extends AbstractBoleto implements BoletoContract
         $this->campoLinhaDigitavel = $str;
         return $this;    
     }
+
+     /**
+     * Retorna o Nosso Número.
+     *
+     * @return string
+     */
+    public function getNossoNumero()
+    {
+        return $this->numero;
+    }
 }
