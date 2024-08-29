@@ -107,6 +107,7 @@ class Caixa extends AbstractBoleto implements BoletoContract
         return $numero;
     }
 
+
     /**
      * Método que retorna o nosso numero usado no boleto. alguns bancos possuem algumas diferenças.
      *
@@ -200,4 +201,24 @@ class Caixa extends AbstractBoleto implements BoletoContract
             'nossoNumeroFull' => substr($campoLivre, 7, 3) . substr($campoLivre, 11, 3) . substr($campoLivre, 15, 8),
         ];
     }
+
+    
+
+    public function setCodigoBarras($codigoBarras)
+    {
+        $this->campoCodigoBarras = $codigoBarras;
+        return $this;
+    }
+
+    public function setLinhaDigitavel($linhaDigitavel)
+    {
+
+        $str = substr($linhaDigitavel, 0, 5).'.'.substr($linhaDigitavel, 5, 5).' '.substr($linhaDigitavel, 10, 5);
+        $str .= '.'.substr($linhaDigitavel, 15, 6).' '.substr($linhaDigitavel, 21, 5).'.'.substr($linhaDigitavel, 26, 6);
+        $str .= ' '.substr($linhaDigitavel, 32, 1).' '.substr($linhaDigitavel, 33);
+
+        $this->campoLinhaDigitavel = $str;
+        return $this;    
+    }
+
 }

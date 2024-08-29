@@ -21,7 +21,7 @@ class Sicredi extends AbstractBoleto implements BoletoContract
      *
      * @var string
      */
-    protected $localPagamento = 'Pagável preferencialmente nas cooperativas de crédito do sicredi';
+    protected $localPagamento = 'Pagável preferencialmente nas cooperativas de crédito do Sicredi';
 
     /**
      * Código do banco
@@ -282,5 +282,22 @@ class Sicredi extends AbstractBoleto implements BoletoContract
             'agencia'         => substr($campoLivre, 11, 4),
             //'contaCorrente' => substr($campoLivre, 17, 5),
         ];
+    }
+
+    public function setCodigoBarras($codigoBarras)
+    {
+        $this->campoCodigoBarras = $codigoBarras;
+        return $this;
+    }
+
+    public function setLinhaDigitavel($linhaDigitavel)
+    {
+
+        $str = substr($linhaDigitavel, 0, 5).'.'.substr($linhaDigitavel, 5, 5).' '.substr($linhaDigitavel, 10, 5);
+        $str .= '.'.substr($linhaDigitavel, 15, 6).' '.substr($linhaDigitavel, 21, 5).'.'.substr($linhaDigitavel, 26, 6);
+        $str .= ' '.substr($linhaDigitavel, 32, 1).' '.substr($linhaDigitavel, 33);
+
+        $this->campoLinhaDigitavel = $str;
+        return $this;    
     }
 }
